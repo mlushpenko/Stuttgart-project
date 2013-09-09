@@ -7,27 +7,35 @@ public class Customer {
 	
 	public Customer(){}
 
-	private Account getAccount() {
+	public Account getAccount() {
 		return account;
 	}
 
-	private void setAccount(Account account) {
+	public boolean getHasAccount() {
+		return hasAccount;
+	}
+
+	public void setHasAccount(boolean hasAccount) {
+		this.hasAccount = hasAccount;
+	}
+
+	public void setAccount(Account account) {
 		this.account = account;
 	}
 
-	private ShoppingCard getCard() {
+	public ShoppingCard getCard() {
 		return card;
 	}
 
-	private void setCard(ShoppingCard card) {
+	public void setCard(ShoppingCard card) {
 		this.card = card;
 	}
 
-	private Order getOrder() {
+	public Order getOrder() {
 		return order;
 	}
 
-	private void setOrder(Order order) {
+	public void setOrder(Order order) {
 		this.order = order;
 	};
 	

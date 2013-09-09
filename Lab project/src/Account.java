@@ -8,6 +8,10 @@ public class Account {
 	private String phoneNumber = null;
 	private long acoountID;
 	
+	public long getAcoountID() {
+		return acoountID;
+	}
+
 	public Account(String email, String password, String name, String surname){
 		this.email = email;
 		this.password =password;
@@ -15,43 +19,43 @@ public class Account {
 		lastName = surname;
 	}
 
-	private String getEmail() {
+	public String getEmail() {
 		return email;
 	}
 
-	private void setEmail(String email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	private String getPassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	private void setPassword(String password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	private String getFirstName() {
+	public String getFirstName() {
 		return firstName;
 	}
 
-	private void setFirstName(String firstName) {
+	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
-	private String getLastName() {
+	public String getLastName() {
 		return lastName;
 	}
 
-	private void setLastName(String lastName) {
+	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
-	private String getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	private void setPhoneNumber(String phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 }

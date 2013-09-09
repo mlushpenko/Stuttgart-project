@@ -17,5 +17,10 @@ public class ShoppingCard {
 		cleanCard();
 		return order;
 	}
+	
+	public boolean isEmpty(){
+		if (itemsList.size() > 0) return false;
+		else return true;
+	}
 
 }
