@@ -9,7 +9,7 @@ public class Product {
 	private String producerName = null;
 	private float productWeight;
 	private float pricePerItem;
-	private int availabilityTreshold;
+	private int availabilityThreshold;
 	
 	public Product(int type, String name, String producer, float weight, float price, int treshold){
 		productTypeID = type;
@@ -17,7 +17,7 @@ public class Product {
 		producerName = producer;
 		productWeight = weight;
 		pricePerItem = price;
-		availabilityTreshold = treshold;
+		availabilityThreshold = treshold;
 	}
 
 	public int getStockAmount() {
@@ -33,6 +33,9 @@ public class Product {
 		return availabilityDate;
 	}
 	
+	public int getThresholdAmount(){
+		return availabilityThreshold;
+	}
 	
 	
 }
