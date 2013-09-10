@@ -1,7 +1,13 @@
 
 public class RegistrationManager {
 
-	
+	/**
+	 * @param email
+	 * @param password
+	 * @param firstname
+	 * @param surname
+	 * @return boolean 
+	 */
 	public boolean registerUser(String email,String password,String firstname, String surname)
 	{
 		boolean registered=false;
@@ -25,6 +31,11 @@ public class RegistrationManager {
 		}
 		}
 	}
+	/**
+	 * 
+	 * @param email
+	 * @return boolean to check weather its validated with db
+	 */
 	//TODO validate weather email exist in the data base , need to have one method some where to check database 
 	private boolean validateEmail(String email)
 	{
