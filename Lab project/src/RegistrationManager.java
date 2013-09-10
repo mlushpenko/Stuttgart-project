@@ -11,7 +11,7 @@ public class RegistrationManager {
 	public boolean registerUser(String email,String password,String firstname, String surname)
 	{
 		boolean registered=false;
-		if(email != null && !email.isEmpty()|| password != null && !password.isEmpty()|| firstname != null && !firstname.isEmpty()||surname != null && !surname.isEmpty())
+		if(!(email != null && !email.isEmpty()|| password != null && !password.isEmpty()|| firstname != null && !firstname.isEmpty()||surname != null && !surname.isEmpty()))
 		{
 			return registered;
 		}
@@ -23,8 +23,13 @@ public class RegistrationManager {
 		//TODO there should be a method in Account to add the user to the Data base.
 		
 		//TODO call that method to create the user in th date base
+		registered = true;
+		Customer user = new Customer();
+		user.setAccount(account);
+		SessionManager.Login(email, password, new Session(user));
 		
 		return registered;	
+		
 		}else
 		{
 			return registered;
