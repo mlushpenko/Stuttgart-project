@@ -24,8 +24,7 @@ public class RegistrationManager {
 		
 		//TODO call that method to create the user in th date base
 		registered = true;
-		Customer user = new Customer();
-		user.setAccount(account);
+		Customer user = new Customer(account);
 		SessionManager.Login(email, password, new Session(user));
 		
 		return registered;	

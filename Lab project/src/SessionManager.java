@@ -49,7 +49,7 @@ public class SessionManager {
 	}
 	
 	public static Session createSession(){
-		Customer user = new Customer();
+		Customer user = new Customer(null);
 		user.setCard(new ShoppingCard());
 		return new Session(user);
 	}

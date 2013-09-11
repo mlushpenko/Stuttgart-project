@@ -5,7 +5,9 @@ public class Customer {
 	private Order order = null;
 	private boolean hasAccount = false;
 	
-	public Customer(){}
+	public Customer(Account account){
+		this.account = account;
+	}
 
 	public Account getAccount() {
 		return account;
