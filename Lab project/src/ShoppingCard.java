@@ -5,6 +5,7 @@ public class ShoppingCard {
 	private ArrayList<Product> itemsList = null;
 	
 	private void addItem(Product item){
+		itemsList= new ArrayList<Product>();
 		itemsList.add(item);
 	}
 	
