@@ -17,10 +17,10 @@
     <coordinates>
       <x>340</x>
       <y>110</y>
-      <w>110</w>
+      <w>130</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>session:Session</panel_attributes>
+    <panel_attributes>session : Session</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -63,10 +63,10 @@ lt=-&gt;&gt;&gt;&gt;&gt;
     <coordinates>
       <x>180</x>
       <y>110</y>
-      <w>110</w>
+      <w>120</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>_:SessionManager_</panel_attributes>
+    <panel_attributes>: SessionManager</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -124,23 +124,22 @@ lt=&lt;.</panel_attributes>
       <w>140</w>
       <h>80</h>
     </coordinates>
-    <panel_attributes>   ref-logOut()
+    <panel_attributes>   ref - logOut()
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>210</x>
-      <y>340</y>
-      <w>350</w>
-      <h>100</h>
+      <x>340</x>
+      <y>320</y>
+      <w>228</w>
+      <h>120</h>
     </coordinates>
-    <panel_attributes>[has account = true]
-logOut(user)
+    <panel_attributes>           logOut(user)
 lt=-&gt;&gt;&gt;&gt;&gt;
 </panel_attributes>
-    <additional_attributes>30;30;270;30;270;80;160;80</additional_attributes>
+    <additional_attributes>140;30;140;50;140;100;30;100</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
@@ -190,21 +189,20 @@ lt=&gt;&gt;&gt;&gt;&gt;</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>210</x>
-      <y>540</y>
-      <w>200</w>
-      <h>94</h>
+      <x>180</x>
+      <y>520</y>
+      <w>254</w>
+      <h>70</h>
     </coordinates>
-    <panel_attributes>[else]
-destroySession()
+    <panel_attributes>[else]   destroySession()           .
 lt=&gt;&gt;&gt;&gt;&gt;</panel_attributes>
-    <additional_attributes>30;50;180;50</additional_attributes>
+    <additional_attributes>60;50;210;50</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqDestroyMark</type>
     <coordinates>
       <x>380</x>
-      <y>580</y>
+      <y>560</y>
       <w>20</w>
       <h>20</h>
     </coordinates>
@@ -217,10 +215,10 @@ lt=&gt;&gt;&gt;&gt;&gt;</panel_attributes>
       <x>360</x>
       <y>510</y>
       <w>50</w>
-      <h>100</h>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;80</additional_attributes>
+    <additional_attributes>30;30;30;60</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
@@ -277,5 +275,28 @@ lt=&gt;</panel_attributes>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>60</x>
+      <y>200</y>
+      <w>50</w>
+      <h>470</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>30;30;30;450</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>180</x>
+      <y>300</y>
+      <w>346</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>[hasAccount = true]                                          .
+lt=-</panel_attributes>
+    <additional_attributes>60;50;300;50</additional_attributes>
   </element>
 </diagram>

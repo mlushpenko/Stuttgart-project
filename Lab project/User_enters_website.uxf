@@ -20,18 +20,18 @@
       <w>100</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>_:Session_</panel_attributes>
+    <panel_attributes>: Session</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>250</x>
+      <x>240</x>
       <y>70</y>
-      <w>100</w>
+      <w>110</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>user:Customer</panel_attributes>
+    <panel_attributes>user : Customer</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -42,7 +42,7 @@
       <w>150</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>card:ShoppingCard
+    <panel_attributes>card : ShoppingCard
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -71,12 +71,12 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>90</x>
+      <x>80</x>
       <y>70</y>
-      <w>110</w>
+      <w>120</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>_:SessionManager_</panel_attributes>
+    <panel_attributes>: SessionManager</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -157,7 +157,7 @@ lt=-&gt;&gt;&gt;&gt;&gt;
       <w>200</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>setCard()
+    <panel_attributes>setCart()
 lt=-&gt;&gt;&gt;&gt;&gt;
 </panel_attributes>
     <additional_attributes>30;50;180;50</additional_attributes>
@@ -192,7 +192,7 @@ lt=-&gt;&gt;&gt;&gt;&gt;
       <w>200</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>card 
+    <panel_attributes>cart 
 lt=&lt;.</panel_attributes>
     <additional_attributes>30;50;180;50</additional_attributes>
   </element>
@@ -285,7 +285,7 @@ lt=&lt;.</panel_attributes>
       <w>150</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>sessio
+    <panel_attributes>session
 lt=&lt;.</panel_attributes>
     <additional_attributes>30;50;130;50</additional_attributes>
   </element>

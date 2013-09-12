@@ -121,7 +121,7 @@
       <w>330</w>
       <h>240</h>
     </coordinates>
-    <panel_attributes>Shopping card manager</panel_attributes>
+    <panel_attributes>Shopping cart manager</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -133,7 +133,7 @@
       <h>40</h>
     </coordinates>
     <panel_attributes>Add items to the
-shopping card</panel_attributes>
+shopping cart</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -384,8 +384,8 @@ to available items</panel_attributes>
       <w>120</w>
       <h>60</h>
     </coordinates>
-    <panel_attributes>Fill the shippment
-and billing address</panel_attributes>
+    <panel_attributes>Fill the shipping
+and billing addresses</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -397,7 +397,7 @@ and billing address</panel_attributes>
       <h>50</h>
     </coordinates>
     <panel_attributes>Choose 
-shippment type</panel_attributes>
+shipment type</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -420,7 +420,7 @@ shippment type</panel_attributes>
       <w>120</w>
       <h>120</h>
     </coordinates>
-    <panel_attributes>Shippment Service</panel_attributes>
+    <panel_attributes>Shipment Service</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -818,7 +818,7 @@ save/update/delete</panel_attributes>
       <w>160</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>Clean shopping card</panel_attributes>
+    <panel_attributes>Clean shopping cart</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
