@@ -48,12 +48,12 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>150</x>
+      <x>90</x>
       <y>40</y>
-      <w>170</w>
+      <w>240</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>session:SessionManager</panel_attributes>
+    <panel_attributes>sessionManager : SessionManager</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -110,7 +110,7 @@ lt=&lt;&lt;&lt;&lt;&lt;</panel_attributes>
       <w>130</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>cusomer:Customer</panel_attributes>
+    <panel_attributes>cusomer : Customer</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -178,7 +178,7 @@ lt=&lt;&lt;&lt;&lt;&lt;</panel_attributes>
       <w>120</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>account:Account</panel_attributes>
+    <panel_attributes>account : Account</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -243,7 +243,7 @@ lt=&lt;&lt;&lt;&lt;&lt;</panel_attributes>
       <x>870</x>
       <y>560</y>
       <w>20</w>
-      <h>30</h>
+      <h>60</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -324,7 +324,7 @@ lt=&lt;&lt;&lt;&lt;&lt;</panel_attributes>
       <w>370</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>getCard()
+    <panel_attributes>getCart()
 lt=&lt;&lt;&lt;&lt;&lt;</panel_attributes>
     <additional_attributes>350;50;30;50</additional_attributes>
   </element>
@@ -336,7 +336,7 @@ lt=&lt;&lt;&lt;&lt;&lt;</panel_attributes>
       <w>370</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>order
+    <panel_attributes>cart
 lt=&lt;&lt;&lt;&lt;&lt;</panel_attributes>
     <additional_attributes>30;50;350;50</additional_attributes>
   </element>
@@ -348,7 +348,7 @@ lt=&lt;&lt;&lt;&lt;&lt;</panel_attributes>
       <w>710</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>                         saveCard(card,accountid)
+    <panel_attributes>                          saveCart(cart, accountid)
 lt=&lt;&lt;&lt;&lt;&lt;</panel_attributes>
     <additional_attributes>690;50;30;50</additional_attributes>
   </element>
@@ -360,7 +360,7 @@ lt=&lt;&lt;&lt;&lt;&lt;</panel_attributes>
       <w>710</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>                            saveOrder(order,accountid)
+    <panel_attributes>                            saveOrder(order, accountid)
 lt=&lt;&lt;&lt;&lt;&lt;</panel_attributes>
     <additional_attributes>690;50;30;50</additional_attributes>
   </element>
@@ -430,7 +430,7 @@ lt=&lt;&lt;&lt;&lt;&lt;</panel_attributes>
       <w>130</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>session:Session</panel_attributes>
+    <panel_attributes>session : Session</panel_attributes>
     <additional_attributes/>
   </element>
   <element>

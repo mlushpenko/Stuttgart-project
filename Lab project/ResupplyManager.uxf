@@ -6,8 +6,8 @@
     <coordinates>
       <x>30</x>
       <y>0</y>
-      <w>510</w>
-      <h>430</h>
+      <w>700</w>
+      <h>460</h>
     </coordinates>
     <panel_attributes>ResupplyManager</panel_attributes>
     <additional_attributes/>
@@ -20,7 +20,7 @@
       <w>220</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>resupply:ResupplyService</panel_attributes>
+    <panel_attributes>resupply : ResupplyService</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -53,7 +53,7 @@ lt=&lt;&lt;&lt;&lt;&lt;-
       <x>170</x>
       <y>130</y>
       <w>20</w>
-      <h>240</h>
+      <h>280</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -113,7 +113,7 @@ lt=&lt;&lt;&lt;&lt;&lt;-
       <h>70</h>
     </coordinates>
     <panel_attributes>outOfStockItems
-lt=&lt;&lt;.
+lt=&lt;&lt;&lt;&lt;&lt;.
 </panel_attributes>
     <additional_attributes>30;50;220;50</additional_attributes>
   </element>
@@ -121,14 +121,36 @@ lt=&lt;&lt;.
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>90</x>
-      <y>200</y>
+      <y>250</y>
       <w>350</w>
-      <h>150</h>
+      <h>100</h>
     </coordinates>
-    <panel_attributes>           [outOfStockItems.count&gt;0] 
+    <panel_attributes>            
              buyOutOfStockItems(outOfStockItems)
 lt=&lt;&lt;&lt;&lt;&lt;-
 </panel_attributes>
-    <additional_attributes>100;130;180;130;180;30;100;30</additional_attributes>
+    <additional_attributes>100;80;180;80;180;30;100;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.SeqObjectActive</type>
+    <coordinates>
+      <x>180</x>
+      <y>330</y>
+      <w>20</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.InteractionFrame</type>
+    <coordinates>
+      <x>150</x>
+      <y>210</y>
+      <w>550</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>Opt       [outOfStockItems.count&gt;0]</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
