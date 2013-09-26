@@ -12,6 +12,10 @@ public class WebShop {
 
 	public static Date getShipmentDate(Hashtable<Product, Integer> products, int type) {
 		// TODO get shipment date from Shipment Service
+		float totalWeight = 0;
+		for (Product p:products.keySet()){
+			totalWeight+= p.getProductWeight() * products.get(p);
+		}
 		return null;
 	}
 
