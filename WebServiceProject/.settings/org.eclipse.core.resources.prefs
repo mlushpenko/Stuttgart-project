@@ -1,0 +1,10 @@
+eclipse.preferences.version=1
+encoding//src/com/buyme/www/ShipmentService/InvalidAddressFault.java=UTF-8
+encoding//src/com/buyme/www/ShipmentService/InvalidShipmentTypeFault.java=UTF-8
+encoding//src/com/buyme/www/ShipmentService/NonpositiveWeightValueFault.java=UTF-8
+encoding//src/com/buyme/www/ShipmentService/ShipmentServiceSOAPImpl.java=UTF-8
+encoding//src/com/buyme/www/ShipmentService/ShipmentServiceSOAPSkeleton.java=UTF-8
+encoding//src/com/buyme/www/ShipmentService/ShipmentServiceSOAPStub.java=UTF-8
+encoding//src/com/buyme/www/ShipmentService/ShipmentService_PortType.java=UTF-8
+encoding//src/com/buyme/www/ShipmentService/ShipmentService_Service.java=UTF-8
+encoding//src/com/buyme/www/ShipmentService/ShipmentService_ServiceLocator.java=UTF-8

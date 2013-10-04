@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.buyme.com/ShipmentService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ShipmentService" targetNamespace="http://www.buyme.com/ShipmentService/">
+  <wsdl:message name="GetAdditionalCostsRequest">
+    <wsdl:part name="Address" type="xsd:string"/>
+    <wsdl:part name="Weight" type="xsd:float"/>
+    <wsdl:part name="ShipmentType" type="xsd:int"/>
+  </wsdl:message>
+  <wsdl:message name="GetAdditionalCostsResponse">
+    <wsdl:part name="AdditionalCosts" type="xsd:float"/>
+  </wsdl:message>
+  <wsdl:message name="GetDeliveryDateRequest">
+    <wsdl:part name="Address" type="xsd:string"/>
+    <wsdl:part name="Weight" type="xsd:float"/>
+    <wsdl:part name="ShipmentType" type="xsd:int"/>
+  </wsdl:message>
+  <wsdl:message name="GetDeliveryDateResponse">
+    <wsdl:part name="DeliveryDate" type="xsd:date"/>
+  </wsdl:message>
+  <wsdl:message name="InvalidShipmentTypeFault">
+  	<wsdl:part name="InvalidShipmentType" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="InvalidAddressFault">
+  	<wsdl:part name="InvalidAddress" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="NonpositiveWeightValueFault">
+  	<wsdl:part name="NonpositiveWeightValue" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:portType name="ShipmentService">
+    <wsdl:operation name="GetAdditionalCosts">
+      <wsdl:input message="tns:GetAdditionalCostsRequest"/>
+      <wsdl:output message="tns:GetAdditionalCostsResponse"/>
+            <wsdl:fault message="tns:InvalidShipmentTypeFault" name="fault"/>
+            <wsdl:fault message="tns:InvalidAddressFault" name="fault1"/>
+            <wsdl:fault message="tns:NonpositiveWeightValueFault" name="fault2"/>
+        </wsdl:operation>
+    <wsdl:operation name="GetDeliveryDate">
+      <wsdl:input message="tns:GetDeliveryDateRequest"/>
+      <wsdl:output message="tns:GetDeliveryDateResponse"/>
+            <wsdl:fault message="tns:InvalidShipmentTypeFault" name="fault"/>
+            <wsdl:fault message="tns:InvalidAddressFault" name="fault1"/>
+            <wsdl:fault message="tns:NonpositiveWeightValueFault" name="fault2"/>
+        </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ShipmentServiceSOAP" type="tns:ShipmentService">
+
+  	<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+  	<wsdl:operation name="GetAdditionalCosts">
+
+  		<soap:operation soapAction="http://www.buyme.com/ShipmentService/GetAdditionalCosts"/>
+  		<wsdl:input>
+
+  			<soap:body namespace="http://www.buyme.com/ShipmentService/" use="literal"/>
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body namespace="http://www.buyme.com/ShipmentService/" use="literal"/>
+  		</wsdl:output>
+  		<wsdl:fault name="fault">
+
+  			<soap:fault name="fault" use="literal"/>
+  		</wsdl:fault>
+  		<wsdl:fault name="fault1">
+
+  			<soap:fault name="fault1" use="literal"/>
+  		</wsdl:fault>
+  		<wsdl:fault name="fault2">
+
+  			<soap:fault name="fault2" use="literal"/>
+  		</wsdl:fault>
+  	</wsdl:operation>
+  	<wsdl:operation name="GetDeliveryDate">
+
+  		<soap:operation soapAction="http://www.buyme.com/ShipmentService/GetDeliveryDate"/>
+  		<wsdl:input>
+
+  			<soap:body namespace="http://www.buyme.com/ShipmentService/" use="literal"/>
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body namespace="http://www.buyme.com/ShipmentService/" use="literal"/>
+  		</wsdl:output>
+  		<wsdl:fault name="fault">
+  			<soap:fault name="fault" use="literal"/>
+  		</wsdl:fault>
+  		<wsdl:fault name="fault1">
+  			<soap:fault name="fault1" use="literal"/>
+  		</wsdl:fault>
+  		<wsdl:fault name="fault2">
+  			<soap:fault name="fault2" use="literal"/>
+  		</wsdl:fault>
+  	</wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ShipmentService">
+    <wsdl:port binding="tns:ShipmentServiceSOAP" name="ShipmentServiceSOAP">
+      <soap:address location="http://localhost:8080/WebServiceProject/services/ShipmentServiceSOAP"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

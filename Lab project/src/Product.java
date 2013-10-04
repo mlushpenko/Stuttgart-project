@@ -8,6 +8,23 @@ public class Product {
 	private String productName = null;
 	private String producerName = null;
 	private float productWeight;
+	
+	public float getProductWeight() {
+		return productWeight;
+	}
+
+	public void setProductWeight(float productWeight) {
+		this.productWeight = productWeight;
+	}
+
+	public float getPricePerItem() {
+		return pricePerItem;
+	}
+
+	public void setPricePerItem(float pricePerItem) {
+		this.pricePerItem = pricePerItem;
+	}
+
 	private float pricePerItem;
 	private int availabilityThreshold;
 	
