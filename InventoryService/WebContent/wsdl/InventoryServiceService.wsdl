@@ -39,7 +39,7 @@
   </binding>
   <service name="InventoryServiceService">
     <port name="InventoryServicePort" binding="tns:InventoryServicePortBinding">
-      <soap:address location="http://Smart-PC:8080/InventoryService/InventoryServiceService?wsdl"/>
+      <soap:address location="http://localhost:8080/InventoryService/InventoryServiceService?wsdl"/>
     </port>
   </service>
 </definitions>
