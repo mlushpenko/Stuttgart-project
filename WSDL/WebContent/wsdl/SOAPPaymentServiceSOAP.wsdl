@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.buyme.com/SOAPPaymentService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SOAPPaymentService" targetNamespace="http://www.buyme.com/SOAPPaymentService/">
+  <wsdl:message name="doPaymentRequest">
+    <wsdl:part name="address" type="xsd:string"/>
+    <wsdl:part name="name" type="xsd:string"/>
+    <wsdl:part name="amount" type="xsd:float"/>
+    <wsdl:part name="card_number" type="xsd:long"/>
+    <wsdl:part name="cvc_code" type="xsd:int"/>
+  </wsdl:message>
+  <wsdl:message name="doPaymentResponse">
+    <wsdl:part name="PaymentResult" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:portType name="SOAPPaymentService">
+    <wsdl:operation name="doPayment">
+      <wsdl:input message="tns:doPaymentRequest"/>
+      <wsdl:output message="tns:doPaymentResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  
+  <wsdl:binding name="SOAPPayment" type="tns:SOAPPaymentService">
+  	<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+  	<wsdl:operation name="doPayment">
+  		<soap:operation soapAction="http://www.buyme.com/SOAPPaymentService/doPayment"/>
+  		<wsdl:input>
+  			<soap:body namespace="http://www.buyme.com/SOAPPaymentService/" use="literal"/>
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body namespace="http://www.buyme.com/SOAPPaymentService/" use="literal"/>
+  		</wsdl:output>
+  	</wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SOAPPaymentService">
+
+    <wsdl:port binding="tns:SOAPPayment" name="SOAPPaymentServiceSOAP">
+    	<soap:address location="http://localhost:8080/WSDL/services/SOAPPaymentServiceSOAP"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
