@@ -19,9 +19,9 @@ public class InventoryService {
 			Integer ProductId = productId;
 
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-			String productavailability;
-
-			if (productId % 2 == 0) {
+			String productavailability ="none";
+			System.out.println(productavailability);
+/*			if (productId % 2 == 0) {
 				productavailability = ProductId.toString();
 			} else {
 				Calendar cal = Calendar.getInstance();
@@ -30,7 +30,11 @@ public class InventoryService {
 
 				productavailability = dateFormat.format(cal.getTime());
 
-			}
+			}*/
+			
+			InventoryDetails inventoryDetails = new InventoryDetails();
+			productavailability =	inventoryDetails.getInventoryDetails(productId);
+			System.out.println(productavailability);
 
 			return productavailability;
 		}

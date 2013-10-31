@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy xmlns="http://www.apache.org/ode/schemas/dd/2007/03" xmlns:SOAPPaymentService="http://www.buyme.com/SOAPPaymentService/" xmlns:ShipmentService="http://www.buyme.com/ShipmentService/" xmlns:inventoryservice="http://imse.soc.grp4.org/inventoryservice" xmlns:webshopprocess="http://webshopprocess">
+  <process name="webshopprocess:webshopprocess">
+    <active>true</active>
+    <retired>false</retired>
+    <process-events generate="all"/>
+    <provide partnerLink="client">
+      <service name="webshopprocess:webshopprocessService" port="webshopprocessPort"/>
+    </provide>
+    <invoke partnerLink="InventoryLink">
+      <service name="inventoryservice:InventoryServiceService" port="InventoryServicePort"/>
+    </invoke>
+    <invoke partnerLink="PaymentService">
+      <service name="SOAPPaymentService:SOAPPaymentService" port="SOAPPaymentServiceSOAP"/>
+    </invoke>
+    <invoke partnerLink="ShipmentPartnerLink">
+      <service name="ShipmentService:ShipmentService" port="ShipmentServiceSOAP"/>
+    </invoke>
+  </process>
+</deploy>
