@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/ResupplyService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ResupplyService" targetNamespace="http://www.example.org/ResupplyService/">
+	<wsdl:message name="enquireRequest">
+		<wsdl:part name="productID" type="xsd:int"/>
+	</wsdl:message>
+	<wsdl:message name="enquireResponse1">
+		<wsdl:part name="stockAmount" type="xsd:int"/>
+	</wsdl:message>
+	<wsdl:message name="resupplyRequest">
+		<wsdl:part name="productID" type="xsd:int"/>
+		<wsdl:part name="amount" type="xsd:int"/>
+	</wsdl:message>
+	<wsdl:message name="resupplyResponse1">
+		<wsdl:part name="result" type="xsd:boolean"/>
+	</wsdl:message>
+	<wsdl:message name="getPriceRequest">
+		<wsdl:part name="productID" type="xsd:int"/>
+	</wsdl:message>
+	<wsdl:message name="getPriceResponse1">
+		<wsdl:part name="price" type="xsd:float"/>
+	</wsdl:message>
+	<wsdl:portType name="ResupplyServiceSOAPPort">
+		<wsdl:operation name="enquire">
+			<wsdl:input message="tns:enquireRequest"/>
+			<wsdl:output message="tns:enquireResponse1"/>
+		</wsdl:operation>
+		<wsdl:operation name="resupply">
+			<wsdl:input message="tns:resupplyRequest"/>
+			<wsdl:output message="tns:resupplyResponse1"/>
+		</wsdl:operation>
+		<wsdl:operation name="getPrice">
+			<wsdl:input message="tns:getPriceRequest"/>
+			<wsdl:output message="tns:getPriceResponse1"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ResupplySOAPBinding" type="tns:ResupplyServiceSOAPPort">
+		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="enquire">
+			<soap:operation soapAction="http://www.example.org/ResupplyService/enquire"/>
+			<wsdl:input>
+				<soap:body namespace="http://www.example.org/ResupplyService/" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body namespace="http://www.example.org/ResupplyService/" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="resupply">
+			<soap:operation soapAction="http://www.example.org/ResupplyService/resupply"/>
+			<wsdl:input>
+				<soap:body namespace="http://www.example.org/ResupplyService/" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body namespace="http://www.example.org/ResupplyService/" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPrice">
+			<soap:operation soapAction="http://www.example.org/ResupplyService/getPrice"/>
+			<wsdl:input>
+				<soap:body namespace="http://www.example.org/ResupplyService/" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body namespace="http://www.example.org/ResupplyService/" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ResupplyService">
+		<wsdl:port binding="tns:ResupplySOAPBinding" name="ResupplyServiceSOAPPort">
+			<soap:address location="http://localhost:8080/ResupplyService/services/ResupplyServiceSOAPPort"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

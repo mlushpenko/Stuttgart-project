@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy xmlns="http://www.apache.org/ode/schemas/dd/2007/03" xmlns:ResupplyService="http://www.example.org/ResupplyService/" xmlns:resupply="http://resupply">
+  <process name="resupply:Resupply">
+    <active>true</active>
+    <retired>false</retired>
+    <process-events generate="all"/>
+    <provide partnerLink="client">
+      <service name="resupply:ResupplyService" port="ResupplyPort"/>
+    </provide>
+    <invoke partnerLink="ResupplyServicePL">
+      <service name="ResupplyService:ResupplyService" port="ResupplyServiceSOAPPort"/>
+    </invoke>
+  </process>
+</deploy>
