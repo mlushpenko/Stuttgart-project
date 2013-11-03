@@ -70,8 +70,16 @@ public class PaymentService {
 
 	private String validatePayment(String address, String name, float amount,
 			long cardnumber, int cvccode) {
-		// TODO Do some validation for parameters
-		return "success";
+		if (name.split(" ").length != 2)
+			return "Please provide Name and Surname like 'Steve Jobs'";
+		else if (!(amount > 0))
+			return "Amount must be more then zero";
+		else if (String.valueOf(cardnumber).length() != 16)
+			return "Invalid card number, it must contain exactly 16 digits";
+		else if (String.valueOf(cvccode).length() != 3)
+			return "Invalid cvc code, check again 3 digits on the back of your credit card";
+		else
+			return SUCCESS;
 	}
 
 }
