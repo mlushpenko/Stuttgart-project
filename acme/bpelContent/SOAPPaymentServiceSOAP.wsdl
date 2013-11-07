@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://www.buyme.com/SOAPPaymentService/"
+	xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://www.buyme.com/SOAPPaymentService/"
+	xmlns:intf="http://www.buyme.com/SOAPPaymentService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<!--WSDL created by Apache Axis version: 1.4 Built on Apr 22, 2006 (06:55:48 
+		PDT) -->
+
+	<wsdl:message name="doPaymentResponse">
+
+		<wsdl:part name="PaymentResult" type="xsd:string">
+
+		</wsdl:part>
+
+	</wsdl:message>
+
+	<wsdl:message name="doPaymentRequest">
+
+		<wsdl:part name="address" type="xsd:string">
+
+		</wsdl:part>
+
+		<wsdl:part name="name" type="xsd:string">
+
+		</wsdl:part>
+
+		<wsdl:part name="amount" type="xsd:float">
+
+		</wsdl:part>
+
+		<wsdl:part name="card_number" type="xsd:long">
+
+		</wsdl:part>
+
+		<wsdl:part name="cvc_code" type="xsd:int">
+
+		</wsdl:part>
+
+	</wsdl:message>
+
+	<wsdl:portType name="SOAPPaymentService">
+
+		<wsdl:operation name="doPayment"
+			parameterOrder="address name amount card_number cvc_code">
+
+			<wsdl:input message="impl:doPaymentRequest" name="doPaymentRequest">
+
+			</wsdl:input>
+
+			<wsdl:output message="impl:doPaymentResponse" name="doPaymentResponse">
+
+			</wsdl:output>
+
+		</wsdl:operation>
+
+	</wsdl:portType>
+
+	<wsdl:binding name="SOAPPaymentServiceSOAPSoapBinding"
+		type="impl:SOAPPaymentService">
+
+		<wsdlsoap:binding style="rpc"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+
+		<wsdl:operation name="doPayment">
+
+			<wsdlsoap:operation
+				soapAction="http://www.buyme.com/SOAPPaymentService/doPayment" />
+
+			<wsdl:input name="doPaymentRequest">
+
+				<wsdlsoap:body namespace="http://www.buyme.com/SOAPPaymentService/"
+					use="literal" />
+
+			</wsdl:input>
+
+			<wsdl:output name="doPaymentResponse">
+
+				<wsdlsoap:body namespace="http://www.buyme.com/SOAPPaymentService/"
+					use="literal" />
+
+			</wsdl:output>
+
+		</wsdl:operation>
+
+	</wsdl:binding>
+
+	<wsdl:service name="SOAPPaymentService">
+
+		<wsdl:port binding="impl:SOAPPaymentServiceSOAPSoapBinding"
+			name="SOAPPaymentServiceSOAP">
+
+			<wsdlsoap:address
+				location="http://129.69.214.67:8080/SOAPPaymentService/services/SOAPPaymentServiceSOAP" />
+
+		</wsdl:port>
+
+	</wsdl:service>
+
+</wsdl:definitions>

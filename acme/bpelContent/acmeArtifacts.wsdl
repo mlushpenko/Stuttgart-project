@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:p="http://www.w3.org/2001/XMLSchema" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://acme" xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" xmlns:wsdl="http://imse.soc.grp4.org/inventoryservice" xmlns:wsdl1="http://www.buyme.com/ShipmentService/" xmlns:wsdl2="http://www.buyme.com/SOAPPaymentService/" xmlns:wsdl3="http://www.example.org/ResupplyService/" name="acme" targetNamespace="http://acme">
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     TYPE DEFINITION - List of types participating in this BPEL process 
+     The BPEL Designer will generate default request and response types
+     but you can define or import any XML Schema type and use them as part 
+     of the message types.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+    <plnk:partnerLinkType name="InvPLT">
+    <plnk:role name="InvRole" portType="wsdl:InventoryService"/>
+  </plnk:partnerLinkType>
+    <vprop:property name="MyCs" type="p:int"/>
+    <vprop:propertyAlias messageType="tns:acmeRequestMessage" part="payload" propertyName="tns:MyCs">
+    <vprop:query><![CDATA[/tns:orderid]]></vprop:query>
+  </vprop:propertyAlias>
+    <vprop:propertyAlias messageType="tns:shipmentRequest" part="parameters" propertyName="tns:MyCs">
+    <vprop:query><![CDATA[/tns:orderid]]></vprop:query>
+  </vprop:propertyAlias>
+    <vprop:propertyAlias messageType="tns:paymentRequest" part="parameters" propertyName="tns:MyCs">
+    <vprop:query><![CDATA[/tns:orderid]]></vprop:query>
+  </vprop:propertyAlias>
+    <plnk:partnerLinkType name="ShipmentPLT">
+    <plnk:role name="ShipmentRole" portType="wsdl1:ShipmentService"/>
+  </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="PaymentPLT">
+    <plnk:role name="PaymentRole" portType="wsdl2:SOAPPaymentService"/>
+  </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="ResupplyPartnerLT">
+    <plnk:role name="ResupplyPort" portType="wsdl3:ResupplyServiceSOAPPort"/>
+  </plnk:partnerLinkType>
+    <import location="InventoryServiceService.wsdl" namespace="http://imse.soc.grp4.org/inventoryservice"/>
+    <import location="ShipmentServiceSOAP.wsdl" namespace="http://www.buyme.com/ShipmentService/"/>
+    <import location="SOAPPaymentServiceSOAP.wsdl" namespace="http://www.buyme.com/SOAPPaymentService/"/>
+    <import location="ResupplyServiceSOAPPort.wsdl" namespace="http://www.example.org/ResupplyService/"/>
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://acme">
+
+            <element name="acmeRequest">
+                <complexType>
+                    <sequence maxOccurs="1" minOccurs="1">
+                    	<element maxOccurs="unbounded" minOccurs="1" name="input" type="tns:product"/>
+                    	<element name="orderid" type="int"/>
+                    </sequence>
+                </complexType>
+            </element>
+
+            <element name="acmeResponse">
+                <complexType>
+                    <sequence>
+                        <element name="result" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+        
+            <complexType name="product">
+            	<sequence>
+            		<element name="id" type="int"/>
+            		<element name="amount" type="int"/>
+            	</sequence>
+            </complexType>
+            <element name="shipment">
+            	<complexType>
+            		<sequence>
+
+            			<element name="address" type="string"/>
+            			<element name="type" type="int"/>
+            			<element name="weight" type="float"/>
+            			<element name="orderid" type="int"/>
+            		</sequence>
+            	</complexType>
+            </element>
+            <element name="shipmentResponse">
+            	<complexType>
+            		<sequence>
+
+            			<element name="out" type="string"/>
+            			<element name="date" type="string"/>
+            		</sequence>
+            	</complexType>
+            </element>
+            <element name="payment">
+            	<complexType>
+            		<sequence>
+
+            			<element name="orderid" type="int"/>
+            			<element name="name" type="string"/>
+            			<element name="address" type="string"/>
+            			<element name="amount" type="float"/>
+            			<element name="cardnumber" type="double"/>
+            			<element name="cvc" type="int"/>
+            		</sequence>
+            	</complexType>
+            </element>
+            <element name="paymentResponse">
+            	<complexType>
+            		<sequence>
+
+            			<element name="out" type="string"/>
+            		</sequence>
+            	</complexType>
+            </element>
+        </schema>
+    </types>
+
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     MESSAGE TYPE DEFINITION - Definition of the message types used as 
+     part of the port type defintions
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+    <message name="acmeRequestMessage">
+        <part element="tns:acmeRequest" name="payload"/>
+
+    </message>
+    <message name="acmeResponseMessage">
+        <part element="tns:acmeResponse" name="payload"/>
+    </message>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     PORT TYPE DEFINITION - A port type groups a set of operations into
+     a logical service unit.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+
+    <!-- portType implemented by the acme BPEL process -->
+    <message name="shipmentRequest">
+    	<part element="tns:shipment" name="parameters"/>
+
+    </message>
+    <message name="shipmentResponse">
+    	<part element="tns:shipmentResponse" name="parameters"/>
+    </message>
+    <message name="paymentRequest">
+    	<part element="tns:payment" name="parameters"/>
+    </message>
+    <message name="paymentResponse">
+    	<part element="tns:paymentResponse" name="parameters"/>
+    </message>
+    <portType name="acme">
+        <operation name="process">
+            <input message="tns:acmeRequestMessage"/>
+            <output message="tns:acmeResponseMessage"/>
+        </operation>
+        <operation name="shipment">
+        	<input message="tns:shipmentRequest"/>
+        	<output message="tns:shipmentResponse"/>
+        </operation>
+        <operation name="payment">
+        	<input message="tns:paymentRequest"/>
+        	<output message="tns:paymentResponse"/>
+        </operation>
+    </portType>   
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     PARTNER LINK TYPE DEFINITION
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+    <plnk:partnerLinkType name="acme">
+        <plnk:role name="acmeProvider" portType="tns:acme"/>
+    </plnk:partnerLinkType>
+    
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     BINDING DEFINITION - Defines the message format and protocol details
+     for a web service.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <binding name="acmeBinding" type="tns:acme">
+    	<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    	<operation name="process">
+    		<soap:operation soapAction="http://acme/process"/>
+    		<input>
+    			<soap:body use="literal"/>
+    		</input>
+    		<output>
+    			<soap:body use="literal"/>
+    		</output>
+    	</operation>
+    	<operation name="shipment">
+    		<soap:operation soapAction="http://acme/shipment"/>
+    		<input>
+    			<soap:body use="literal"/>
+    		</input>
+    		<output>
+    			<soap:body use="literal"/>
+    		</output>
+    	</operation>
+    	<operation name="payment">
+    		<soap:operation soapAction="http://acme/payment"/>
+    		<input>
+    			<soap:body use="literal"/>
+    		</input>
+    		<output>
+    			<soap:body use="literal"/>
+    		</output>
+    	</operation>
+    </binding>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     SERVICE DEFINITION - A service groups a set of ports into
+     a service unit.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <service name="acmeService">
+    	<port binding="tns:acmeBinding" name="acmePort">
+    		<soap:address location="http://129.69.214.67:9090/ode/processes/acme"/>
+    	</port>
+    </service>
+</definitions>

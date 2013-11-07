@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://imse.soc.grp4.org/inventoryservice" xmlns:tns="http://imse.soc.grp4.org/inventoryservice" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="InvalidProductIdFault" type="tns:InvalidProductIdFault"/>
+
+  <xs:element name="getProductAvailability" type="tns:getProductAvailability"/>
+
+  <xs:element name="getProductAvailabilityResponse" type="tns:getProductAvailabilityResponse"/>
+
+  <xs:complexType name="getProductAvailability">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getProductAvailabilityResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="InvalidProductIdFault">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy xmlns="http://www.apache.org/ode/schemas/dd/2007/03" xmlns:ResupplyService="http://www.example.org/ResupplyService/" xmlns:SOAPPaymentService="http://www.buyme.com/SOAPPaymentService/" xmlns:ShipmentService="http://www.buyme.com/ShipmentService/" xmlns:acme="http://acme" xmlns:inventoryservice="http://imse.soc.grp4.org/inventoryservice">
+  <process name="acme:acme">
+    <active>true</active>
+    <retired>false</retired>
+    <process-events generate="all"/>
+    <provide partnerLink="client">
+      <service name="acme:acmeService" port="acmePort"/>
+    </provide>
+    <invoke partnerLink="InventoryPL">
+      <service name="inventoryservice:InventoryServiceService" port="InventoryServicePort"/>
+    </invoke>
+    <invoke partnerLink="ShipmentPL">
+      <service name="ShipmentService:ShipmentService" port="ShipmentServiceSOAP"/>
+    </invoke>
+    <invoke partnerLink="PaymentPL">
+      <service name="SOAPPaymentService:SOAPPaymentService" port="SOAPPaymentServiceSOAP"/>
+    </invoke>
+    <invoke partnerLink="ResupplyPL">
+      <service name="ResupplyService:ResupplyService" port="ResupplyServiceSOAPPort"/>
+    </invoke>
+  </process>
+</deploy>
