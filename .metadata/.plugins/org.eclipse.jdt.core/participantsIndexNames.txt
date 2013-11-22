@@ -1,0 +1,3 @@
+INDEX VERSION 1.126
+C:\Users\Maksym\Documents\GitHub\Stuttgart-project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\678598226.index
+\ACME_UI\src

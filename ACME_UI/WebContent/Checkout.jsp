@@ -13,25 +13,17 @@
 </head>
 <body>
 <jsp:include page="Top.jsp"></jsp:include>
-<% Hashtable<Product,Integer> collection = (Hashtable<Product,Integer>)session.getAttribute("Products");
-   Enumeration<Product> products = collection.keys();
-   float price=0;
-   while(products.hasMoreElements()){
-	Product product = products.nextElement();
-	int amount = collection.get(product);
-   	price += product.getProductPrice()*amount;
-   }
-%>
 	<div class="container" style="margin-top:100px">
 		<div>
 			<ul class="list-group">
 				<c:forEach items="${Products}" var="product">
 					<li class="list-group-item" style="padding-bottom:5px">
 						<div class="${product.key.productName}" >
+							<div class="row">
 						    <span class="col-md-2"><c:out value="${product.key.productName}"></c:out></span>
 							<span class="col-md-1 price">$<c:out value="${product.key.productPrice}"></c:out></span>
-							<span class="col-md-1">Quantity: <span class="badge ${product.key.productName}"><c:out value="${product.value}"></c:out></span></span>
-							<span class="col-md-5"><c:out value="${product.key.availabilityDate}"></c:out></span>
+							<span class="col-md-3 quantity">Quantity: <span class="badge ${product.key.productName}"><c:out value="${product.value}"></c:out></span></span>
+							<span class="col-md-3"><c:out value="${product.key.availabilityDate}"></c:out></span>
 							<span class="col-md-3">
 								<button type="button" class="btn btn-xs btn-danger">remove</button>
 								<span style="width:20px">
@@ -39,16 +31,17 @@
 									</select> 
 								</span>
 							</span>
+							</div>
 						</div>
 					</li>
 				</c:forEach>
 			</ul>
 		</div>
 		<div>
-			<p class="text-right" id="totalPrice">Total price: $<%=price%></p>
+			<p class="text-right" id="totalPrice"></p>
 			<p class="text-right">
 				<button type="button" class="btn btn-default">Cancel</button>
-				<a class="btn btn-primary" role="button" href="Address.jsp">Next</a>
+				<a class="btn btn-primary" role="button">Next</a>
 			</p>
 		</div>
 	</div>
@@ -69,32 +62,43 @@ $(function () {
         }
     }
     
-    function getPrice(){
+    function setTotalPrice(){
     	var prices = $("span.price");
     	var price = 0;
-    	//alert(prices[0]);
     	for (var i=0; i<prices.length; i++){
-    		var amount = prices[i].siblings("span>.badge").text();
-    		alert(amount);
-    		price += prices[i].innerText*20;
+    		var amount = $("span.price:eq(" + i + ")").siblings("span.quantity").children().text();
+    		price = price + prices[i].innerText.substring(1)*amount;
     	}
+    	$("#totalPrice").text("Total price: $" + price);    	
     }
 
     initDropdowns();
+    setTotalPrice();
 
     $(".btn-danger").click(function () {
         var className = $(this).parent().siblings(".col-md-2").text();
         var selected = $("select." + className + "  option:selected").text();
         var quantity = $("span>.badge." + className).text();
         if (selected == quantity) {
-            $(this).parent().parent().remove();
-            $("#totalPrice").text("Total price: $" + getPrice());
+            $(this).parent().parent().parent().parent().remove();
+            setTotalPrice();
         } else {
             $("span>.badge." + className).text(quantity - selected);
             initDropwodn(className);
-            $("#totalPrice").text("Total price: $" + getPrice());
+            setTotalPrice();
         }
         
+    });
+    
+    $('a.btn').click(function (){
+    	var products = $('span.col-md-2');
+    	var params = "";
+    	for (var i = 0; i < products.length; i++){
+    		params += $('span.col-md-2:eq(' + i + ')').text() + "=";
+    		params += $('span.quantity:eq(' + i + ')').children().text() + ",";
+    	};
+    	params += "TotalPrice=" + $('#totalPrice').text().substring(14);
+    	$('a.btn').attr('href','/ACME_UI/faces/Address.jsp?' + params);
     });
 });
 </script>

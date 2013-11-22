@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<servers>
+  <server auto-publish-setting="1" auto-publish-time="0" hostname="localhost" id="GlassFish 4.0 at localhost" name="GlassFish 4.0 at localhost" runtime-id="GlassFish 4.0" server-type="org.glassfish.jst.server.glassfish4" server-type-id="org.glassfish.jst.server.glassfish4" start-timeout="240" stop-timeout="240" timestamp="5">
+    <list key="Generic_Server_Modules_List" value0="org.eclipse.jst.jee.server:InventoryService" value1="org.eclipse.jst.jee.server:ACME_UI" value2="org.eclipse.jst.jee.server:OrderingProcess"/>
+    <map key="generic_server_instance_properties" sunappserver.adminname="admin" sunappserver.adminpassword="" sunappserver.adminserverportnumber="4848" sunappserver.domainpath="C:\Program Files (x86)\Java\glassfish4\glassfish\domains\domain1" sunappserver.keepSessions="true" sunappserver.serveraddress="localhost"/>
+    <list key="modules" value0="InventoryService::org.eclipse.jst.jee.server:InventoryService::jst.web::3.0" value1="ACME_UI::org.eclipse.jst.jee.server:ACME_UI::jst.web::3.0" value2="OrderingProcess::org.eclipse.jst.jee.server:OrderingProcess::jst.ejb::3.2"/>
+  </server>
+  <server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers/Tomcat v7.0 Server at localhost-config" deployDir="wtpwebapps" hostname="localhost" id="Tomcat v7.0 Server at localhost" name="Tomcat v7.0 Server at localhost" runtime-id="Apache Tomcat v7.0" server-type="org.eclipse.jst.server.tomcat.70" server-type-id="org.eclipse.jst.server.tomcat.70" start-timeout="45" stop-timeout="15" testEnvironment="true" timestamp="0"/>
+  <server hostname="localhost" id="Ode v1.x Server at localhost" name="Ode v1.x Server at localhost" runtime-id="Apache Ode 1.x Runtime" server-type="org.eclipse.jst.server.generic.apache.ode.1x" server-type-id="org.eclipse.jst.server.generic.apache.ode.1x" start-timeout="480" stop-timeout="60" timestamp="0">
+    <map key="generic_server_instance_properties"/>
+  </server>
+</servers>

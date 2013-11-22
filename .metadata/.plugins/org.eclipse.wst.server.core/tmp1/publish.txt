@@ -1,0 +1,5 @@
+#GlassFish 3
+#Fri Nov 22 06:07:23 EET 2013
+org.eclipse.jst.jee.server\:ACME_UI=C\:\\Program Files (x86)\\Java\\glassfish4\\glassfish\\domains\\domain1\\eclipseApps\\ACME_UI
+org.eclipse.jst.jee.server\:OrderingProcess=C\:\\Program Files (x86)\\Java\\glassfish4\\glassfish\\domains\\domain1\\eclipseApps\\OrderingProcess
+org.eclipse.jst.jee.server\:InventoryService=C\:\\Program Files (x86)\\Java\\glassfish4\\glassfish\\domains\\domain1\\eclipseApps\\InventoryService
