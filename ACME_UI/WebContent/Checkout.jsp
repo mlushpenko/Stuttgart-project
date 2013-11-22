@@ -40,7 +40,7 @@
 		<div>
 			<p class="text-right" id="totalPrice"></p>
 			<p class="text-right">
-				<button type="button" class="btn btn-default">Cancel</button>
+				<a class="btn btn-default" role="button" href="/ACME_UI/Index">Cancel</button>
 				<a class="btn btn-primary" role="button">Next</a>
 			</p>
 		</div>
@@ -90,7 +90,7 @@ $(function () {
         
     });
     
-    $('a.btn').click(function (){
+    $('a.btn-primary').click(function (){
     	var products = $('span.col-md-2');
     	var params = "";
     	for (var i = 0; i < products.length; i++){

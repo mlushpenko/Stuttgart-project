@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import com.imse.grp4.data.Product;
+import com.imse.grp4.data.ProductManager;
 
 /**
  * Servlet implementation class CheckoutController
@@ -41,9 +43,12 @@ public class CheckoutController extends HttpServlet {
 		pr2.setProductName("Nexus4"); pr2.setProductPrice(15); pr2.setId(2); pr2.setProductWeight(1); pr2.setAvailabilityDate(new Date());
 		pr3.setProductName("Nexus3"); pr3.setProductPrice(5); pr3.setId(3); pr3.setProductWeight(3); pr3.setAvailabilityDate(new Date());
 		
-		products.put(pr1, 25);
-		products.put(pr2, 10);
-		products.put(pr3, 13);
+		ProductManager pm = new ProductManager();
+		pm.getProductDetail(1);
+		
+		products.put(pm.getProductDetail(1), 25);
+		products.put(pm.getProductDetail(2), 10);
+		products.put(pm.getProductDetail(3), 13);
 		
 		session.setAttribute("Products", products);
 		RequestDispatcher view = request.getRequestDispatcher("/Checkout.jsp");
