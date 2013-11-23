@@ -74,6 +74,7 @@
         </div>
           <div class="navbar-collapse collapse" style="float:right; padding-right: 0px; padding-left: 0px;" >    
   			<form  style="float:left;"  class="navbar-form navbar-right" action="SignUp" method="post">
+  			 <input value="" name="signupurl"   id="signupurl" type="hidden"  style="width:0px;">
           <button type="submit"   class="btn btn-success" >Sign up</button> 
           </form>
           </div>
@@ -143,6 +144,7 @@
  document.getElementById("password").style.visibility="hidden";
   }
    document.getElementById("url").value=location; 
+   document.getElementById("signupurl").value=location; 
   </script>
  
 

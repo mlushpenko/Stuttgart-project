@@ -6,6 +6,12 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
   </head>
+    <%
+//String cat = "All";
+String signupreq = request.getParameter("signupurl").toString();
+ 
+    
+  %>
   <body>
     
 
@@ -27,6 +33,7 @@
       <div class="container" style="width:400px; padding-top:100px; height:auto;  position: relative; width: 50%;
     margin: 0 auto;">
     <form class="form-signin" action="SignUp" method="post" >
+    <input value=<%=signupreq%> name="signupurl"   id="signupurl" type="hidden"  style="width:0px;">
         <h2 class="form-signin-heading" style="margin:3px;">Please Provide all Details</h2>
         <input type="text" name="firstname" class="form-control" style="margin:3px;"  placeholder="First Name" required="" autofocus="">
          <input type="text" name="lastname" class="form-control" style="margin:3px;" placeholder="Last Name" required="" >

@@ -22,6 +22,8 @@ public class SignUp extends HttpServlet {
 			long LOWER_RANGE = 0; //assign lower range value
 			 long UPPER_RANGE = 1000000; //assign upper range value
 			 Random random = new Random();
+			 String url=request.getParameter("signupurl");
+				url=url.substring(url.lastIndexOf("/")+1,url.length());
 
 
 			 long randomValue = LOWER_RANGE + 
@@ -33,11 +35,11 @@ public class SignUp extends HttpServlet {
 			account.setAccountID(randomValue);
 			AccountManager am = new AccountManager();
 			am.createAccount(account);
-			
-		//	request.setAttribute("name", request.getParameter("firstname"));
-		//	HttpSession session = request.getSession(true);
-		
-			getServletContext().getNamedDispatcher("Index").forward(request, response);
+			HttpSession session = request.getSession(true);
+			session.setAttribute("user", account);
+	
+			response.sendRedirect(url);
+			 
 			
 			
 			
