@@ -24,22 +24,27 @@ public class Login extends HttpServlet {
 				&& !request.getParameter("password").isEmpty()) {
 
 			AccountManager am = new AccountManager();
-			Account d = am.getProductDetail(request.getParameter("email"),
+			Account account = am.getProductDetail(request.getParameter("email"),
 					request.getParameter("password"));
 
-			if (d != null) {
+			if (account != null) {
 				HttpSession session = request.getSession(true);
-				session.setAttribute("firstname", d.getFirstName());
+				session.setAttribute("user", account);
 			} else {
-
+				response.sendRedirect("Index");
 			}
+			
+			String url=request.getParameter("url");
+			url=url.substring(url.lastIndexOf("/")+1,url.length());
+			response.sendRedirect(url);;
 		} else {
 			HttpSession session = request.getSession(true);
 			session.invalidate();
+
+			response.sendRedirect("Index");
 		}
 
-		getServletContext().getNamedDispatcher("Index").forward(request,
-				response);
+		
 
 	}
 

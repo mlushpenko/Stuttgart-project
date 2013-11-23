@@ -5,6 +5,9 @@
   <head>
     <title>ACME WebShop Group 4</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 
   </head>
   <body>
@@ -61,7 +64,49 @@
                   
   
   </script>
-<jsp:include page="Top.jsp"></jsp:include>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div >
+          
+          <a class="navbar-brand" href="#">ACME Web Shop Group 4    <b> </b>!     <span class="label label-success">${user.firstName}</span></a>
+        
+		
+        </div>
+          <div class="navbar-collapse collapse" style="float:right; padding-right: 0px; padding-left: 0px;" >    
+  			<form  style="float:left;"  class="navbar-form navbar-right" action="SignUp" method="post">
+          <button type="submit"   class="btn btn-success" >Sign up</button> 
+          </form>
+          </div>
+
+        <div class="navbar-collapse collapse" style="float:right;padding-right: 0px; padding-left: 0px;" >
+        <form onsubmit="return sum()" method="get" action="Checkout" class="navbar-form navbar-right" style="float:right;"> 
+            
+              <input value="" name="productids"   id="a" type="hidden" placeholder="User Name" class="form-control" style="width:0px;">
+             <button type="submit" class="btn btn-success"  ><span id="count" class="badge " style="background-color:red;"></span>Check Out</button>
+              </form>
+       </div>
+
+      
+      <div class="navbar-collapse collapse" style="float:right; padding-right: 0px; padding-left: 0px;" >
+          <form class="navbar-form navbar-right" style="float:left;" onsubmit="return clearhtmlsession()" action="Login" method="post">
+            <input value="" name="url"   id="url" type="hidden"  style="width:0px;">
+            <div class="form-group" id="email"  style="margin-right:3px;" >
+              <input type="text" name="email"  placeholder="User Name" class="form-control">
+            </div>
+            <div class="form-group"  id="password" style="margin-right:3px;" >
+              <input type="password" name="password"  placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" id="signin" class="btn btn-success">Sign in</button>
+          
+           
+            </form>
+           
+        
+        </div>
+        
+         
+        </div>
+    </div>
     <div class="list-group" style="margin-top:100px; padding:20px;">
      <div class="row">
       <c:forEach var="currentCustomer" items="${PassingObj}">
@@ -91,12 +136,13 @@
   </body>
   <script type="text/javascript">
 
-   if('${firstname}'!="")
+  if('${user}'!="")
   {
 	   document.getElementById("signin").innerHTML="SignOut";
  document.getElementById("email").style.visibility="hidden";
  document.getElementById("password").style.visibility="hidden";
   }
+   document.getElementById("url").value=location; 
   </script>
  
 
