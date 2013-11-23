@@ -7,48 +7,50 @@
 <title>Payment data</title>
 </head>
 <body>
-
+<% float shippingCosts = (Float.parseFloat((String) session.getAttribute("ShippingCosts")));
+   float productsPrice = (Float.parseFloat((String) session.getAttribute("ProductsPrice")));
+   float amount = shippingCosts + productsPrice;
+   session.setAttribute("TotalPrice", amount);%>
 <jsp:include page="Top.jsp"></jsp:include>
 	<div class="container" style="margin-top:100px">
 		
 		<div class="panel panel-info">
 			<div class="panel-heading">Summary</div>
 			<div class="panel-body">
-				<p>Order price: $100</p>
-				<p>Shipment price: $100</p>
-				<p>Total price: $100</p>
-				<p>Estimated delivery date: 31.12.2013</p>
+				<p>Order price: $${ProductsPrice}</p>
+				<p>Shipment price: $${ShippingCosts}</p>
+				<p>Total price: $<%= amount  %></p>
+				<p>Estimated delivery date: ${DeliveryDate}</p>
 			</div>
 		</div>
-
 	
-		<form class="form-horizontal" role="form">
+		<form class="form-horizontal" role="form" method="post" action="Payment">
 		  
 		  <div class="form-group">
 		    <label for="inputName" class="col-sm-2 control-label">Name</label>
 		    <div class="col-sm-10">
-		      <input type="name" class="form-control" id="inputName" placeholder="Name">
+		      <input type="text" class="form-control" name="inputName" placeholder="Name and Surname">
 		    </div>
 		  </div>
 		  
 		  <div class="form-group">
 		    <label for="inputCardNumber" class="col-sm-2 control-label">CardNumber</label>
 		    <div class="col-sm-10">
-		      <input type="cardNumber" class="form-control" id="inputCardNumber" placeholder="CardNumber">
+		      <input type="text" class="form-control" name="inputCardNumber" placeholder="CardNumber 16 digits long">
 		    </div>
 		  </div>
 		  
 		  <div class="form-group">
 		    <label for="inputCVCcode" class="col-sm-2 control-label">CVCcode</label>
 		    <div class="col-sm-10">
-		      <input type="cvcCode" class="form-control" id="inputCVCcode" placeholder="CVCcode">
+		      <input type="text" class="form-control" name="inputCVCcode" placeholder="CVCcode 3 digits long">
 		    </div>
 		  </div>
 		  
 		  <div class="form-group">
 		    <div class="col-sm-offset-2 col-sm-10">
 		    	<p class="text-right">
-			        <button type="button" class="btn btn-default">Cancel</button>
+			        <a class="btn btn-default" role="button" href="/ACME_UI/Index">Cancel</a>
 					<button type="submit" class="btn btn-primary">Next</button>
 				</p>
 		    </div>

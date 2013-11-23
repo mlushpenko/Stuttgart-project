@@ -94,11 +94,11 @@ $(function () {
     	var products = $('span.col-md-2');
     	var params = "";
     	for (var i = 0; i < products.length; i++){
-    		params += $('span.col-md-2:eq(' + i + ')').text() + "=";
-    		params += $('span.quantity:eq(' + i + ')').children().text() + ",";
+    		params += $('span.col-md-2:eq(' + i + ')').text().trim() + "=";
+    		params += $('span.quantity:eq(' + i + ')').children().text().trim() + ",";
     	};
     	params += "TotalPrice=" + $('#totalPrice').text().substring(14);
-    	$('a.btn').attr('href','/ACME_UI/faces/Address.jsp?' + params);
+    	$('a.btn').attr('href','/ACME_UI/Address?' + params);
     });
 });
 </script>
