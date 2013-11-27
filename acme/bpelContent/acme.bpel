@@ -76,7 +76,7 @@
         <!-- Receive input from requester. 
              Note: This maps to operation defined in acme.wsdl 
              -->
-        <bpel:receive name="receiveInput" partnerLink="client"
+        <bpel:receive name="recieveOrder" partnerLink="client"
                  portType="tns:acme"
                  operation="process" variable="input"
                  createInstance="yes">
@@ -84,7 +84,7 @@
                 <bpel:correlation set="cs" initiate="yes"></bpel:correlation>
             </bpel:correlations>
         </bpel:receive>
-        <bpel:assign validate="no" name="Assign">
+        <bpel:assign validate="no" name="AssignLoopCondition">
             <bpel:copy>
                 <bpel:from><bpel:literal><tns:acmeResponse xmlns:tns="http://acme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <tns:result>tns:result</tns:result>
@@ -125,7 +125,7 @@
         <bpel:while name="While">
             <bpel:condition expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"><![CDATA[$counter>0]]></bpel:condition>
             <bpel:sequence>
-                <bpel:assign validate="no" name="Assign1">
+                <bpel:assign validate="no" name="AssignInputToInventoryService">
                     <bpel:copy>
                         <bpel:from><bpel:literal><tns:getProductAvailability xmlns:tns="http://imse.soc.grp4.org/inventoryservice" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <arg0>0</arg0>
@@ -238,8 +238,8 @@
                         </bpel:to>
                     </bpel:copy>
                 </bpel:assign>
-                <bpel:invoke name="Invoke" partnerLink="InventoryPL" operation="getProductAvailability" portType="ns:InventoryService" inputVariable="InventoryPLRequest" outputVariable="InventoryPLResponse"></bpel:invoke>
-                <bpel:assign validate="no" name="Assign3">
+                <bpel:invoke name="InventoryService" partnerLink="InventoryPL" operation="getProductAvailability" portType="ns:InventoryService" inputVariable="InventoryPLRequest" outputVariable="InventoryPLResponse"></bpel:invoke>
+                <bpel:assign validate="no" name="AssignInventoryResponse">
                     <bpel:copy>
                         <bpel:from part="parameters" variable="InventoryPLResponse">
                             <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"><![CDATA[return]]></bpel:query>
@@ -247,10 +247,10 @@
                         <bpel:to variable="result"></bpel:to>
                     </bpel:copy>
                 </bpel:assign>
-                <bpel:if name="If">
+                <bpel:if name="IfProductNotAvailable">
                     <bpel:condition expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"><![CDATA[contains($result,'-')]]></bpel:condition>
                     <bpel:sequence>
-                        <bpel:assign validate="no" name="Assign4">
+                        <bpel:assign validate="no" name="AssignReplyasFalse">
                         <bpel:copy>
                             <bpel:from>
                                 <bpel:literal xml:space="preserve">Product not available</bpel:literal>
@@ -266,8 +266,8 @@
                                 </bpel:to>
                             </bpel:copy>
                         </bpel:assign>
-                        <bpel:reply name="Reply" partnerLink="client" operation="process" portType="tns:acme" variable="output"></bpel:reply>
-                        <bpel:exit name="Exit"></bpel:exit>
+                        <bpel:reply name="ReturnProductNotavailable" partnerLink="client" operation="process" portType="tns:acme" variable="output"></bpel:reply>
+                        <bpel:exit name="ExitProcess"></bpel:exit>
                     </bpel:sequence>
                     <bpel:else>
                         <bpel:sequence>
@@ -279,10 +279,10 @@
                                 <bpel:to variable="cond"></bpel:to>
                             </bpel:copy>
                         </bpel:assign>
-                            <bpel:if name="If1">
+                            <bpel:if name="IsProductAvailableEnoughToRequest">
                                 <bpel:condition expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"><![CDATA[$result<$input.payload/tns:input[round($iterator)]/tns:amount]]></bpel:condition>
                                 <bpel:sequence>
-                                    <bpel:assign validate="no" name="Assign6">
+                                    <bpel:assign validate="no" name="AssignReplyAsFalse">
                                         <bpel:copy>
                                             <bpel:from><bpel:literal><tns:acmeResponse xmlns:tns="http://acme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <tns:result>tns:result</tns:result>
@@ -303,11 +303,11 @@
                                             </bpel:to>
                                         </bpel:copy>
                                     </bpel:assign>
-                                    <bpel:reply name="Reply1" partnerLink="client" operation="process" portType="tns:acme" variable="output"></bpel:reply>
-                                    <bpel:exit name="Exit1"></bpel:exit>
+                                    <bpel:reply name="ReturnProductIsNotEnough" partnerLink="client" operation="process" portType="tns:acme" variable="output"></bpel:reply>
+                                    <bpel:exit name="ExitProcesses"></bpel:exit>
                                 </bpel:sequence>
                                 <bpel:else>
-                                    <bpel:assign validate="no" name="Assign7">
+                                    <bpel:assign validate="no" name="AssignTrue">
                                         <bpel:copy>
                                             <bpel:from>
                                                 <bpel:literal xml:space="preserve">true</bpel:literal>
@@ -322,7 +322,7 @@
                 </bpel:if>
             </bpel:sequence>
         </bpel:while>
-        <bpel:assign validate="no" name="Assign2">
+        <bpel:assign validate="no" name="AssignTheReplyAsTrue">
             <bpel:copy>
                 <bpel:from><bpel:literal><tns:acmeResponse xmlns:tns="http://acme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <tns:result>tns:result</tns:result>
@@ -347,14 +347,14 @@
                 </bpel:to>
             </bpel:copy>
         </bpel:assign>
-        <bpel:reply name="Reply2" partnerLink="client" operation="process" portType="tns:acme" variable="output"></bpel:reply>
-        <bpel:receive name="Receive" partnerLink="client" operation="shipment" portType="tns:acme" variable="clientRequest">
+        <bpel:reply name="ReplyProductsAvailable" partnerLink="client" operation="process" portType="tns:acme" variable="output"></bpel:reply>
+        <bpel:receive name="ReceiveShipmentDetails" partnerLink="client" operation="shipment" portType="tns:acme" variable="clientRequest">
             <bpel:correlations>
                 <bpel:correlation set="cs" initiate="no"></bpel:correlation>
             </bpel:correlations>
         </bpel:receive>
         <bpel:flow name="Flow"><bpel:sequence name="Sequence">
-                <bpel:assign validate="no" name="Assign8">
+                <bpel:assign validate="no" name="AssignInputsToShipmentCost">
             <bpel:copy>
                 <bpel:from><bpel:literal><tns:shipmentResponse xmlns:tns="http://acme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <tns:out>tns:out</tns:out>
@@ -392,8 +392,8 @@
                 <bpel:to part="Weight" variable="ShipmentPLRequest"></bpel:to>
             </bpel:copy>
         </bpel:assign>
-                <bpel:invoke name="Invoke1" partnerLink="ShipmentPL" operation="GetAdditionalCosts" portType="ns0:ShipmentService" inputVariable="ShipmentPLRequest" outputVariable="ShipmentPLResponse"></bpel:invoke>
-                <bpel:assign validate="no" name="Assign10"><bpel:copy>
+                <bpel:invoke name="InvokeShipmentCost" partnerLink="ShipmentPL" operation="GetAdditionalCosts" portType="ns0:ShipmentService" inputVariable="ShipmentPLRequest" outputVariable="ShipmentPLResponse"></bpel:invoke>
+                <bpel:assign validate="no" name="AssignTheCostToVariable"><bpel:copy>
                 <bpel:from><bpel:literal><tns:shipmentResponse xmlns:tns="http://acme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <tns:out>tns:out</tns:out>
 </tns:shipmentResponse>
@@ -409,7 +409,7 @@
         
                 </bpel:assign>
             </bpel:sequence><bpel:sequence name="Sequence1">
-                <bpel:assign validate="no" name="Assign15">
+                <bpel:assign validate="no" name="AssignInputsToShipmentDate">
                     <bpel:copy>
                         <bpel:from part="parameters" variable="clientRequest">
                             <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"><![CDATA[tns:weight]]></bpel:query>
@@ -430,13 +430,13 @@
                     </bpel:copy>
                     
                 </bpel:assign>
-                <bpel:invoke name="Invoke3" partnerLink="ShipmentPL" operation="GetDeliveryDate" portType="ns0:ShipmentService" inputVariable="ShipmentPLRequest1" outputVariable="ShipmentPLResponse1"></bpel:invoke>
+                <bpel:invoke name="InvokeShipmentDate" partnerLink="ShipmentPL" operation="GetDeliveryDate" portType="ns0:ShipmentService" inputVariable="ShipmentPLRequest1" outputVariable="ShipmentPLResponse1"></bpel:invoke>
                 
             </bpel:sequence></bpel:flow>
         
         
         
-        <bpel:assign validate="no" name="Assign17">
+        <bpel:assign validate="no" name="AssignCostandDate">
             <bpel:copy>
                 <bpel:from><bpel:literal><tns:shipmentResponse xmlns:tns="http://acme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <tns:out>tns:out</tns:out>
@@ -458,18 +458,18 @@
                 </bpel:to>
             </bpel:copy>
         </bpel:assign>
-        <bpel:reply name="replyOutput" 
+        <bpel:reply name="replyCostandDate" 
                partnerLink="client"
                portType="tns:acme"
                operation="shipment" 
                variable="clientResponse"
                />
-        <bpel:receive name="Receive1" partnerLink="client" operation="payment" portType="tns:acme" variable="clientRequest1">
+        <bpel:receive name="recievePaymentRequest" partnerLink="client" operation="payment" portType="tns:acme" variable="clientRequest1">
             <bpel:correlations>
                 <bpel:correlation set="cs" initiate="no"></bpel:correlation>
             </bpel:correlations>
         </bpel:receive>
-        <bpel:assign validate="no" name="Assign9">
+        <bpel:assign validate="no" name="AssignInputToPaymentService">
             <bpel:copy>
                 <bpel:from><bpel:literal><tns:paymentResponse xmlns:tns="http://acme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <tns:out>tns:out</tns:out>
@@ -510,8 +510,8 @@
             </bpel:copy>
             
         </bpel:assign>
-        <bpel:invoke name="Invoke2" partnerLink="PaymentPL" operation="doPayment" portType="ns2:SOAPPaymentService" inputVariable="PaymentPLRequest" outputVariable="PaymentPLResponse"></bpel:invoke>
-        <bpel:assign validate="no" name="Assign11">
+        <bpel:invoke name="InvokePaymentService" partnerLink="PaymentPL" operation="doPayment" portType="ns2:SOAPPaymentService" inputVariable="PaymentPLRequest" outputVariable="PaymentPLResponse"></bpel:invoke>
+        <bpel:assign validate="no" name="AssigntheResultsToVaribale">
             <bpel:copy>
                 <bpel:from><bpel:literal><tns:paymentResponse xmlns:tns="http://acme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <tns:out>tns:out</tns:out>
@@ -525,9 +525,9 @@
                 </bpel:to>
             </bpel:copy>
         </bpel:assign>
-        <bpel:if name="If2">
+        <bpel:if name="CheckPaymentSucessful">
             <bpel:condition expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"><![CDATA[contains($paymentcond,'Payment is successful')]]></bpel:condition>
-            <bpel:assign validate="no" name="Assign12">
+            <bpel:assign validate="no" name="AssignTrue">
                 <bpel:copy>
                     <bpel:from>
                         <bpel:literal xml:space="preserve">true</bpel:literal>
@@ -539,7 +539,7 @@
             </bpel:assign>
             <bpel:else>
                 <bpel:sequence>
-                    <bpel:assign validate="no" name="Assign13">
+                    <bpel:assign validate="no" name="AssignFalse">
                     <bpel:copy>
                         <bpel:from>
                             <bpel:literal xml:space="preserve">false</bpel:literal>
@@ -549,12 +549,12 @@
                         </bpel:to>
                     </bpel:copy>
                 </bpel:assign>
-                    <bpel:reply name="Reply4" partnerLink="client" operation="payment" portType="tns:acme" variable="clientResponse1"></bpel:reply>
-                    <bpel:exit name="Exit2"></bpel:exit>
+                    <bpel:reply name="ReplyPaymentFailed" partnerLink="client" operation="payment" portType="tns:acme" variable="clientResponse1"></bpel:reply>
+                    <bpel:exit name="StopProcess"></bpel:exit>
                 </bpel:sequence>
             </bpel:else>
         </bpel:if>
-        <bpel:assign validate="no" name="Assign14">
+        <bpel:assign validate="no" name="AssignWhileLoop">
             <bpel:copy>
                 <bpel:from><bpel:literal><tns:paymentResponse xmlns:tns="http://acme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <tns:out>tns:out</tns:out>
@@ -598,7 +598,7 @@
         <bpel:while name="While1">
             <bpel:condition expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0"><![CDATA[$iterator>0]]></bpel:condition>
             <bpel:sequence>
-                <bpel:assign validate="no" name="Assign16">
+                <bpel:assign validate="no" name="ChangeTheLoopCondition">
                     <bpel:copy><bpel:from expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0">
                         
                         
@@ -633,7 +633,7 @@
             
                 
                 </bpel:assign>
-                <bpel:assign validate="no" name="Assign19">
+                <bpel:assign validate="no" name="AssignIdandAmount">
                     <bpel:copy>
                         <bpel:from expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0">
                             
@@ -676,11 +676,11 @@
                     </bpel:copy>
                 </bpel:assign>
                 
-                <bpel:invoke name="Invoke4" partnerLink="ResupplyPL" operation="resupply" portType="ns3:ResupplyServiceSOAPPort" inputVariable="ResupplyPLRequest" outputVariable="ResupplyPLResponse"></bpel:invoke>
+                <bpel:invoke name="InvokeServiceToUpdateDataBase" partnerLink="ResupplyPL" operation="resupply" portType="ns3:ResupplyServiceSOAPPort" inputVariable="ResupplyPLRequest" outputVariable="ResupplyPLResponse"></bpel:invoke>
                 
             </bpel:sequence>
         </bpel:while>
-        <bpel:assign validate="no" name="Assign18">
+        <bpel:assign validate="no" name="AssignTrueAsReply">
             <bpel:copy>
                 <bpel:from><bpel:literal><tns:paymentResponse xmlns:tns="http://acme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <tns:out>tns:out</tns:out>
@@ -699,7 +699,7 @@
                 </bpel:to>
             </bpel:copy>
         </bpel:assign>
-        <bpel:reply name="Reply3" partnerLink="client" operation="payment" portType="tns:acme" variable="clientResponse1"></bpel:reply>
+        <bpel:reply name="ReplyPaymentSuccessful" partnerLink="client" operation="payment" portType="tns:acme" variable="clientResponse1"></bpel:reply>
     </bpel:sequence>
 </bpel:process>
 

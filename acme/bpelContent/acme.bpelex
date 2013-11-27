@@ -22,7 +22,7 @@
   </extensions>
   <extensions>
     <extendedObject href="acme.bpel#/"/>
-    <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:ProcessExtension" modificationStamp="1383672267334"/>
+    <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:ProcessExtension" modificationStamp="1385583613385"/>
   </extensions>
   <extensions>
     <extendedObject href="acme.bpel#//@variables/@children.2"/>
@@ -382,7 +382,7 @@
   </extensions>
   <extensions>
     <extendedObject href="acme.bpel#//@activity/@activities.6"/>
-    <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:ActivityExtension"/>
+    <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:ActivityExtension" width="579" height="200"/>
   </extensions>
   <extensions>
     <extendedObject href="acme.bpel#//@activity/@activities.6/@activities.0"/>
@@ -390,7 +390,7 @@
   </extensions>
   <extensions>
     <extendedObject href="acme.bpel#//@activity/@activities.6/@activities.1"/>
-    <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:ActivityExtension" x="160" y="6" width="-1" height="-1"/>
+    <extensionObject xsi:type="org.eclipse.bpel.ui.uiextensionmodel:ActivityExtension" x="250" y="8" width="-1" height="-1"/>
   </extensions>
   <extensions>
     <extendedObject href="acme.bpel#//@activity/@activities.6/@activities.1/@activities.0"/>
