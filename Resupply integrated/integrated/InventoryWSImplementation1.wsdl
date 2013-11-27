@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://DefaultNamespace" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://DefaultNamespace" xmlns:intf="http://DefaultNamespace" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://DefaultNamespace" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getAvailability">
+    <complexType>
+     <sequence>
+      <element name="productID" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAvailabilityResponse">
+    <complexType>
+     <sequence>
+      <element name="getAvailabilityReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAvailabilityDate">
+    <complexType>
+     <sequence>
+      <element name="productID" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAvailabilityDateResponse">
+    <complexType>
+     <sequence>
+      <element name="getAvailabilityDateReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getPrice">
+    <complexType>
+     <sequence>
+      <element name="productID" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getPriceResponse">
+    <complexType>
+     <sequence>
+      <element name="getPriceReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="decreaseStock">
+    <complexType>
+     <sequence>
+      <element name="productID" type="xsd:int"/>
+      <element name="quantity" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="decreaseStockResponse">
+    <complexType>
+     <sequence>
+      <element name="decreaseStockReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addStock">
+    <complexType>
+     <sequence>
+      <element name="productID" type="xsd:int"/>
+      <element name="quantity" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addStockResponse">
+    <complexType>
+     <sequence>
+      <element name="addStockReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="resupply">
+    <complexType>
+     <sequence>
+      <element name="productID" type="xsd:int"/>
+      <element name="quantity" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="resupplyResponse">
+    <complexType>
+     <sequence>
+      <element name="resupplyReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="addStockRequest">
+
+      <wsdl:part element="impl:addStock" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="decreaseStockResponse">
+
+      <wsdl:part element="impl:decreaseStockResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addStockResponse">
+
+      <wsdl:part element="impl:addStockResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="decreaseStockRequest">
+
+      <wsdl:part element="impl:decreaseStock" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPriceRequest">
+
+      <wsdl:part element="impl:getPrice" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAvailabilityDateResponse">
+
+      <wsdl:part element="impl:getAvailabilityDateResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAvailabilityDateRequest">
+
+      <wsdl:part element="impl:getAvailabilityDate" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="resupplyResponse">
+
+      <wsdl:part element="impl:resupplyResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPriceResponse">
+
+      <wsdl:part element="impl:getPriceResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAvailabilityRequest">
+
+      <wsdl:part element="impl:getAvailability" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAvailabilityResponse">
+
+      <wsdl:part element="impl:getAvailabilityResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="resupplyRequest">
+
+      <wsdl:part element="impl:resupply" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="InventoryWSImplementation1">
+
+      <wsdl:operation name="getAvailability">
+
+         <wsdl:input message="impl:getAvailabilityRequest" name="getAvailabilityRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAvailabilityResponse" name="getAvailabilityResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAvailabilityDate">
+
+         <wsdl:input message="impl:getAvailabilityDateRequest" name="getAvailabilityDateRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAvailabilityDateResponse" name="getAvailabilityDateResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPrice">
+
+         <wsdl:input message="impl:getPriceRequest" name="getPriceRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getPriceResponse" name="getPriceResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="decreaseStock">
+
+         <wsdl:input message="impl:decreaseStockRequest" name="decreaseStockRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:decreaseStockResponse" name="decreaseStockResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addStock">
+
+         <wsdl:input message="impl:addStockRequest" name="addStockRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addStockResponse" name="addStockResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="resupply">
+
+         <wsdl:input message="impl:resupplyRequest" name="resupplyRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:resupplyResponse" name="resupplyResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="InventoryWSImplementation1SoapBinding" type="impl:InventoryWSImplementation1">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getAvailability">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAvailabilityRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAvailabilityResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAvailabilityDate">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAvailabilityDateRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAvailabilityDateResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPrice">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPriceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPriceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="decreaseStock">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="decreaseStockRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="decreaseStockResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addStock">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addStockRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addStockResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="resupply">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="resupplyRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="resupplyResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="InventoryWSImplementation1Service">
+
+      <wsdl:port binding="impl:InventoryWSImplementation1SoapBinding" name="InventoryWSImplementation1">
+
+         <wsdlsoap:address location="http://129.69.214.64:8080/ACME/services/InventoryWSImplementation1"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

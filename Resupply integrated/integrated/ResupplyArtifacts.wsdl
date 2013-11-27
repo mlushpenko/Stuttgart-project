@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:p="http://www.w3.org/2001/XMLSchema" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://resupply" xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" xmlns:wsdl="http://www.example.org/ResupplyService/" xmlns:wsdl1="http://DefaultNamespace" name="Resupply" targetNamespace="http://resupply">
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+		TYPE DEFINITION - List of types participating in this BPEL process The BPEL 
+		Designer will generate default request and response types but you can define 
+		or import any XML Schema type and use them as part of the message types. 
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<plnk:partnerLinkType name="ResupplyServicePLT">
+		<plnk:role name="ResupplyProvider" portType="wsdl:ResupplyServiceSOAPPort"/>
+	</plnk:partnerLinkType>
+    <plnk:partnerLinkType name="PartnerResupplyPLT">
+    <plnk:role name="PartnerResupply" portType="wsdl1:InventoryWSImplementation1"/>
+  </plnk:partnerLinkType>
+
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+		MESSAGE TYPE DEFINITION - Definition of the message types used as part of 
+		the port type defintions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+		PORT TYPE DEFINITION - A port type groups a set of operations into a logical 
+		service unit. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<!-- portType implemented by the Resupply BPEL process -->
+
+    <import location="ResupplyServiceSOAPPort.wsdl" namespace="http://www.example.org/ResupplyService/"/>
+    <import location="InventoryWSImplementation1.wsdl" namespace="http://DefaultNamespace"/>
+    <portType name="Resupply">
+		<operation name="InvokeEnquire">
+			<input message="wsdl:enquireRequest"/>
+			<output message="wsdl:enquireResponse"/>
+		</operation>
+		<operation name="InvokeResupply">
+			<input message="wsdl:resupplyRequest"/>
+			<output message="wsdl:resupplyResponse"/>
+		</operation>
+		<operation name="InvokeGetPrice">
+			<input message="wsdl:getPriceRequest"/>
+			<output message="wsdl:getPriceResponse"/>
+		</operation>
+	</portType>
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+		PARTNER LINK TYPE DEFINITION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<plnk:partnerLinkType name="Resupply">
+		<plnk:role name="ResupplyProvider" portType="tns:Resupply"/>
+	</plnk:partnerLinkType>
+
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+		BINDING DEFINITION - Defines the message format and protocol details for 
+		a web service. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<binding name="ResupplyBinding" type="tns:Resupply">
+
+		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="InvokeEnquire">
+
+			<soap:operation soapAction="http://resupply/InvokeEnquire"/>
+			<input>
+
+				<soap:body namespace="http://resupply" use="literal"/>
+			</input>
+			<output>
+
+				<soap:body namespace="http://resupply" use="literal"/>
+			</output>
+		</operation>
+		<operation name="InvokeResupply">
+			<soap:operation soapAction="http://resupply/InvokeResupply"/>
+			<input>
+				<soap:body namespace="http://resupply" use="literal"/>
+			</input>
+			<output>
+				<soap:body namespace="http://resupply" use="literal"/>
+			</output>
+		</operation>
+		<operation name="InvokeGetPrice">
+			<soap:operation soapAction="http://resupply/InvokeGetPrice"/>
+			<input>
+				<soap:body namespace="http://resupply" use="literal"/>
+			</input>
+			<output>
+				<soap:body namespace="http://resupply" use="literal"/>
+			</output>
+		</operation>
+	</binding>
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+		SERVICE DEFINITION - A service groups a set of ports into a service unit. 
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<service name="ResupplyService">
+		<port binding="tns:ResupplyBinding" name="ResupplyPort">
+			<soap:address location="http://localhost:9090/ode/processes/Resupply"/>
+		</port>
+	</service>
+</definitions>

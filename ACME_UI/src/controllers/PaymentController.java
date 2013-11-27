@@ -50,7 +50,8 @@ public class PaymentController extends HttpServlet {
 		
 		String result = service.getAcmeSOAP11PortHttp().payment(orderid, name,
 				address, amount, cardnumber, cvc); 
-
+		
+		session.invalidate();
 		response.sendRedirect("/ACME_UI/Index");
 	}
 
